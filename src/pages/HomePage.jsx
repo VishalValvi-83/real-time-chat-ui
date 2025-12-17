@@ -348,6 +348,11 @@ export default function HomePage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.8 }}
+                    style={{
+                      x: useTransform(bgX, [-50, 50], [-2, 2]),
+                      y: useTransform(bgY, [-50, 50], [-2, 2]),
+                      z: 25
+                    }}
                   >
                     <Link to="/register">
                       <motion.div
