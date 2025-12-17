@@ -105,103 +105,269 @@ export default function HomePage() {
         </div>
       </nav>
 
-        <motion.section
-          style={{ opacity, scale }}
-          className="pt-32 pb-20 px-4 sm:px-6 lg:px-8"
-        >
-          <div className="max-w-7xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="space-y-6"
-            >
-              <motion.h1 
-                className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                Connect with{" "}
-                <motion.span 
-                  className="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent inline-block"
-                  whileHover={{ scale: 1.1, rotate: [-1, 1, -1, 0] }}
-                  transition={{ duration: 0.3 }}
-                >
-                  everyone
-                </motion.span>
-                <br />
-                securely and instantly
-              </motion.h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                The modern chat application that respects your privacy while keeping
-                you connected with friends, family, and colleagues.
-              </p>
-              <div className="flex items-center justify-center gap-4 pt-4">
-                <Link to="/register">
-                  <motion.div
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Button size="lg" className="bg-blue-500 hover:bg-blue-600 text-white">
-                      Start Chatting
-                    </Button>
-                  </motion.div>
-                </Link>
-                <Link to="/chats">
-                  <motion.div
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Button size="lg" variant="outline">
-                      View Demo
-                    </Button>
-                  </motion.div>
-                </Link>
-              </div>
-            </motion.div>
+          <motion.section
+            style={{ opacity, scale }}
+            className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+          >
+            <motion.div 
+              className="absolute inset-0 pointer-events-none"
+              animate={{
+                backgroundPosition: ['0% 0%', '100% 100%'],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "linear"
+              }}
+              style={{
+                backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)',
+                backgroundSize: '200% 200%'
+              }}
+            />
 
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="mt-16 relative"
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-50 to-transparent dark:from-slate-950 h-32 bottom-0 z-10" />
-              <motion.div 
-                className="bg-gradient-to-br from-blue-500/10 to-violet-500/10 rounded-2xl p-8 border border-border/50 backdrop-blur-sm"
-                whileHover={{ scale: 1.02, boxShadow: "0 20px 60px rgba(59, 130, 246, 0.15)" }}
-                transition={{ type: "spring", stiffness: 300 }}
+            <div className="max-w-7xl mx-auto text-center relative z-10">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="space-y-6"
               >
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <motion.div 
-                    className="bg-card rounded-xl p-6 border border-border/50 shadow-sm"
-                    whileHover={{ y: -8, boxShadow: "0 10px 30px rgba(59, 130, 246, 0.2)" }}
-                    transition={{ type: "spring", stiffness: 400 }}
+                <motion.div className="inline-block">
+                  <motion.h1 
+                    className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
                   >
-                    <div className="text-4xl font-bold text-blue-500">2M+</div>
-                    <div className="text-muted-foreground mt-2">Active Users</div>
-                  </motion.div>
-                  <motion.div 
-                    className="bg-card rounded-xl p-6 border border-border/50 shadow-sm"
-                    whileHover={{ y: -8, boxShadow: "0 10px 30px rgba(139, 92, 246, 0.2)" }}
-                    transition={{ type: "spring", stiffness: 400 }}
-                  >
-                    <div className="text-4xl font-bold text-violet-500">500M+</div>
-                    <div className="text-muted-foreground mt-2">Messages Sent</div>
-                  </motion.div>
-                  <motion.div 
-                    className="bg-card rounded-xl p-6 border border-border/50 shadow-sm"
-                    whileHover={{ y: -8, boxShadow: "0 10px 30px rgba(16, 185, 129, 0.2)" }}
-                    transition={{ type: "spring", stiffness: 400 }}
-                  >
-                    <div className="text-4xl font-bold text-emerald-500">99.9%</div>
-                    <div className="text-muted-foreground mt-2">Uptime</div>
-                  </motion.div>
-                </div>
+                    Connect with{" "}
+                    <motion.span 
+                      className="relative inline-block bg-gradient-to-r from-blue-500 via-violet-500 to-purple-500 bg-clip-text text-transparent"
+                      whileHover={{ 
+                        scale: 1.05,
+                        rotate: [0, -2, 2, 0],
+                      }}
+                      transition={{ 
+                        scale: { type: "spring", stiffness: 400, damping: 10 },
+                        rotate: { duration: 0.5, ease: "easeInOut" }
+                      }}
+                    >
+                      <motion.span
+                        animate={{
+                          backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                        }}
+                        transition={{
+                          duration: 5,
+                          repeat: Infinity,
+                          ease: "linear"
+                        }}
+                        style={{
+                          backgroundImage: 'linear-gradient(90deg, #3b82f6, #8b5cf6, #a855f7, #3b82f6)',
+                          backgroundSize: '200% 100%',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                        }}
+                      >
+                        everyone
+                      </motion.span>
+                      <motion.div
+                        className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 via-violet-500/20 to-purple-500/20 blur-xl -z-10"
+                        animate={{
+                          opacity: [0.5, 0.8, 0.5],
+                          scale: [1, 1.1, 1],
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    </motion.span>
+                    <br />
+                    <motion.span
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8, delay: 0.4 }}
+                    >
+                      securely and instantly
+                    </motion.span>
+                  </motion.h1>
+                </motion.div>
+
+                <motion.p 
+                  className="text-xl text-muted-foreground max-w-2xl mx-auto"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                >
+                  The modern chat application that respects your privacy while keeping
+                  you connected with friends, family, and colleagues.
+                </motion.p>
+
+                <motion.div 
+                  className="flex items-center justify-center gap-4 pt-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
+                >
+                  <Link to="/register">
+                    <motion.div
+                      whileHover={{ 
+                        scale: 1.05, 
+                        y: -4,
+                        boxShadow: "0 10px 40px rgba(59, 130, 246, 0.4)"
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    >
+                      <Button size="lg" className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-lg relative overflow-hidden group">
+                        <motion.span
+                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                          initial={{ x: '-100%' }}
+                          whileHover={{ x: '100%' }}
+                          transition={{ duration: 0.6, ease: "easeInOut" }}
+                        />
+                        <span className="relative z-10">Start Chatting</span>
+                      </Button>
+                    </motion.div>
+                  </Link>
+                  <Link to="/chats">
+                    <motion.div
+                      whileHover={{ 
+                        scale: 1.05, 
+                        y: -4,
+                        borderColor: "rgba(59, 130, 246, 0.5)"
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    >
+                      <Button size="lg" variant="outline" className="relative overflow-hidden group">
+                        <motion.span
+                          className="absolute inset-0 bg-blue-500/10"
+                          initial={{ scale: 0, opacity: 0 }}
+                          whileHover={{ scale: 1, opacity: 1 }}
+                          transition={{ duration: 0.3 }}
+                        />
+                        <span className="relative z-10">View Demo</span>
+                      </Button>
+                    </motion.div>
+                  </Link>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          </div>
-        </motion.section>
+
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1 }}
+                className="mt-16 relative"
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-50 to-transparent dark:from-slate-950 h-32 bottom-0 z-10" />
+                
+                <motion.div 
+                  className="relative bg-gradient-to-br from-blue-500/10 via-violet-500/10 to-purple-500/10 rounded-3xl p-8 border border-border/50 backdrop-blur-xl shadow-2xl overflow-hidden group"
+                  whileHover={{ 
+                    scale: 1.02,
+                    boxShadow: "0 25px 70px rgba(59, 130, 246, 0.2)"
+                  }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <motion.div 
+                    className="absolute -top-24 -right-24 w-48 h-48 bg-blue-500/20 rounded-full blur-3xl"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      x: [0, 20, 0],
+                      y: [0, -20, 0],
+                    }}
+                    transition={{
+                      duration: 8,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  <motion.div 
+                    className="absolute -bottom-24 -left-24 w-48 h-48 bg-violet-500/20 rounded-full blur-3xl"
+                    animate={{
+                      scale: [1, 1.3, 1],
+                      x: [0, -20, 0],
+                      y: [0, 20, 0],
+                    }}
+                    transition={{
+                      duration: 8,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 1
+                    }}
+                  />
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 relative z-10">
+                    {[
+                      { value: "2M+", label: "Active Users", color: "blue", delay: 0 },
+                      { value: "500M+", label: "Messages Sent", color: "violet", delay: 0.1 },
+                      { value: "99.9%", label: "Uptime", color: "emerald", delay: 0.2 }
+                    ].map((stat, index) => (
+                      <motion.div
+                        key={stat.label}
+                        className="relative bg-card/80 backdrop-blur-sm rounded-2xl p-6 border border-border/50 shadow-lg overflow-hidden group/stat cursor-pointer"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 1.2 + stat.delay }}
+                        whileHover={{ 
+                          y: -12, 
+                          scale: 1.05,
+                          boxShadow: stat.color === "blue" ? "0 15px 40px rgba(59, 130, 246, 0.3)" :
+                                     stat.color === "violet" ? "0 15px 40px rgba(139, 92, 246, 0.3)" :
+                                     "0 15px 40px rgba(16, 185, 129, 0.3)"
+                        }}
+                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                      >
+                        <motion.div 
+                          className={`absolute inset-0 bg-gradient-to-br opacity-0 group-hover/stat:opacity-10 transition-opacity duration-500 ${
+                            stat.color === "blue" ? "from-blue-500 to-cyan-500" :
+                            stat.color === "violet" ? "from-violet-500 to-purple-500" :
+                            "from-emerald-500 to-teal-500"
+                          }`}
+                        />
+                        
+                        <motion.div
+                          animate={{
+                            rotate: [0, 360],
+                          }}
+                          transition={{
+                            duration: 20,
+                            repeat: Infinity,
+                            ease: "linear"
+                          }}
+                          className={`absolute -top-10 -right-10 w-20 h-20 rounded-full opacity-20 ${
+                            stat.color === "blue" ? "bg-blue-500" :
+                            stat.color === "violet" ? "bg-violet-500" :
+                            "bg-emerald-500"
+                          } blur-2xl`}
+                        />
+                        
+                        <motion.div 
+                          className={`text-4xl font-bold relative z-10 ${
+                            stat.color === "blue" ? "text-blue-500" :
+                            stat.color === "violet" ? "text-violet-500" :
+                            "text-emerald-500"
+                          }`}
+                          whileHover={{ 
+                            scale: 1.1,
+                            filter: "brightness(1.2)"
+                          }}
+                          transition={{ type: "spring", stiffness: 400 }}
+                        >
+                          {stat.value}
+                        </motion.div>
+                        <div className="text-muted-foreground mt-2 relative z-10 font-medium">
+                          {stat.label}
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              </motion.div>
+            </div>
+          </motion.section>
 
         <section ref={featureRef} className="relative py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
