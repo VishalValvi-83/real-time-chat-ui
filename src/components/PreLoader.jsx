@@ -23,51 +23,33 @@ const PreLoader = ({ onComplete }) => {
 
       gsap.set(nameLetters, {
         opacity: 0,
-        x: () => gsap.utils.random(-400, 400),
-        y: () => gsap.utils.random(-300, 300),
-        rotation: () => gsap.utils.random(-180, 180),
-        scale: 0.5,
+        y: 30,
       })
 
       gsap.set(titleLetters, {
         opacity: 0,
-        x: () => gsap.utils.random(-400, 400),
-        y: () => gsap.utils.random(-300, 300),
-        rotation: () => gsap.utils.random(-180, 180),
-        scale: 0.3,
+        y: 20,
       })
 
       tl.to(nameLetters, {
         opacity: 1,
-        x: 0,
         y: 0,
-        rotation: 0,
-        scale: 1,
-        duration: 1.2,
-        ease: "power4.out",
-        stagger: {
-          amount: 0.6,
-          from: "random"
-        }
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.05
       })
       .to(titleLetters, {
         opacity: 1,
-        x: 0,
         y: 0,
-        rotation: 0,
-        scale: 1,
-        duration: 1,
-        ease: "power3.out",
-        stagger: {
-          amount: 0.5,
-          from: "random"
-        }
-      }, "-=0.6")
+        duration: 0.6,
+        ease: "power2.out",
+        stagger: 0.03
+      }, "-=0.2")
       .to(containerRef.current, {
         opacity: 0,
-        duration: 0.6,
+        duration: 0.8,
         ease: "power2.inOut"
-      }, "+=0.8")
+      }, "+=0.6")
 
     }, containerRef)
 
