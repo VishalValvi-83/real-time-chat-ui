@@ -186,17 +186,27 @@ export default function HomePage() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                   >
                     Connect with{" "}
-                    <motion.span 
-                      className="relative inline-block bg-gradient-to-r from-blue-500 via-violet-500 to-purple-500 bg-clip-text text-transparent"
-                      whileHover={{ 
-                        scale: 1.05,
-                        rotate: [0, -2, 2, 0],
-                      }}
-                      transition={{ 
-                        scale: { type: "spring", stiffness: 400, damping: 10 },
-                        rotate: { duration: 0.5, ease: "easeInOut" }
-                      }}
-                    >
+                      <motion.span 
+                        className="relative inline-block bg-gradient-to-r from-blue-500 via-violet-500 to-purple-500 bg-clip-text text-transparent cursor-pointer"
+                        whileHover={{ 
+                          scale: 1.08,
+                          rotate: [0, -2, 2, 0],
+                        }}
+                        animate={{
+                          rotateY: [0, 5, -5, 0],
+                          rotateX: [0, -2, 2, 0]
+                        }}
+                        transition={{ 
+                          scale: { type: "spring", stiffness: 400, damping: 10 },
+                          rotate: { duration: 0.5, ease: "easeInOut" },
+                          rotateY: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+                          rotateX: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 3 }
+                        }}
+                        style={{
+                          transformStyle: "preserve-3d",
+                          perspective: "1000px"
+                        }}
+                      >
                       <motion.span
                         animate={{
                           backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
