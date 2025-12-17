@@ -232,12 +232,23 @@ export default function HomePage() {
                 }}
               />
 
-            <div className="max-w-7xl mx-auto text-center relative z-10">
+            <motion.div 
+              className="max-w-7xl mx-auto text-center relative z-10"
+              style={{
+                x: useTransform(bgX, [-50, 50], [-10, 10]),
+                y: useTransform(bgY, [-50, 50], [-10, 10]),
+                rotateX: useTransform(bgY, [-50, 50], [3, -3]),
+                rotateY: useTransform(bgX, [-50, 50], [-5, 5])
+              }}
+            >
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="space-y-6"
+                style={{
+                  transformStyle: "preserve-3d"
+                }}
               >
                 <motion.div className="inline-block">
                   <motion.h1 
@@ -245,6 +256,10 @@ export default function HomePage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
+                    style={{
+                      x: useTransform(bgX, [-50, 50], [-5, 5]),
+                      y: useTransform(bgY, [-50, 50], [-5, 5])
+                    }}
                   >
                     Connect with{" "}
                       <motion.span 
@@ -265,7 +280,10 @@ export default function HomePage() {
                         }}
                         style={{
                           transformStyle: "preserve-3d",
-                          perspective: "1000px"
+                          perspective: "1000px",
+                          x: useTransform(bgX, [-50, 50], [-8, 8]),
+                          y: useTransform(bgY, [-50, 50], [-8, 8]),
+                          z: 30
                         }}
                       >
                       <motion.span
