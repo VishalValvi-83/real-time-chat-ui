@@ -21,24 +21,33 @@ const PreLoader = ({ onComplete }) => {
       const nameLetters = nameRef.current.querySelectorAll('.letter')
       const titleLetters = titleRef.current.querySelectorAll('.letter')
 
-      nameLetters.forEach((letter, index) => {
-        const randomX = (Math.random() - 0.5) * window.innerWidth * 0.8
-        const randomY = (Math.random() - 0.5) * window.innerHeight * 0.8
-        const randomRotation = (Math.random() - 0.5) * 360
-        
-        gsap.set(letter, {
-          x: randomX,
-          y: randomY,
-          rotation: randomRotation,
-          opacity: 0,
-          scale: 0.3
+        nameLetters.forEach((letter, index) => {
+          const randomX = (Math.random() - 0.5) * window.innerWidth * 0.8
+          const randomY = (Math.random() - 0.5) * window.innerHeight * 0.8
+          const randomRotation = (Math.random() - 0.5) * 360
+          
+          gsap.set(letter, {
+            x: randomX,
+            y: randomY,
+            rotation: randomRotation,
+            opacity: 0,
+            scale: 0.3
+          })
         })
-      })
 
-      gsap.set(titleLetters, {
-        opacity: 0,
-        y: 20,
-      })
+        titleLetters.forEach((letter, index) => {
+          const randomX = (Math.random() - 0.5) * window.innerWidth * 0.6
+          const randomY = (Math.random() - 0.5) * window.innerHeight * 0.6
+          const randomRotation = (Math.random() - 0.5) * 360
+          
+          gsap.set(letter, {
+            x: randomX,
+            y: randomY,
+            rotation: randomRotation,
+            opacity: 0,
+            scale: 0.3
+          })
+        })
 
       tl.to(nameLetters, {
         x: 0,
