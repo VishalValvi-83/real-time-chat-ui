@@ -103,7 +103,27 @@ export default function HomePage() {
   ]
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900">
+    <div ref={containerRef} className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900 cursor-none">
+      <motion.div
+        className="fixed w-8 h-8 rounded-full border-2 border-blue-500 pointer-events-none z-[9999] mix-blend-difference"
+        style={{
+          left: cursorXSpring,
+          top: cursorYSpring,
+          x: "-50%",
+          y: "-50%",
+        }}
+      />
+      
+      <motion.div
+        className="fixed w-2 h-2 rounded-full bg-blue-500 pointer-events-none z-[9999] mix-blend-difference"
+        style={{
+          left: cursorX,
+          top: cursorY,
+          x: "-50%",
+          y: "-50%",
+        }}
+      />
+      
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-border/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
