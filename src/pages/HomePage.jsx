@@ -335,22 +335,32 @@ export default function HomePage() {
                   </motion.div>
               </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1 }}
-                className="mt-16 relative"
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-50 to-transparent dark:from-slate-950 h-32 bottom-0 z-10" />
-                
-                <motion.div 
-                  className="relative bg-gradient-to-br from-blue-500/10 via-violet-500/10 to-purple-500/10 rounded-3xl p-8 border border-border/50 backdrop-blur-xl shadow-2xl overflow-hidden group"
-                  whileHover={{ 
-                    scale: 1.02,
-                    boxShadow: "0 25px 70px rgba(59, 130, 246, 0.2)"
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1 }}
+                  className="mt-16 relative"
+                  style={{
+                    transformStyle: "preserve-3d",
+                    perspective: "2000px"
                   }}
-                  transition={{ type: "spring", stiffness: 300 }}
                 >
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-50 to-transparent dark:from-slate-950 h-32 bottom-0 z-10" />
+                  
+                  <motion.div 
+                    className="relative bg-gradient-to-br from-blue-500/10 via-violet-500/10 to-purple-500/10 rounded-3xl p-8 border border-border/50 backdrop-blur-xl shadow-2xl overflow-hidden group cursor-pointer"
+                    whileHover={{ 
+                      scale: 1.03,
+                      rotateX: 5,
+                      rotateY: 5,
+                      z: 50,
+                      boxShadow: "0 30px 90px rgba(59, 130, 246, 0.3)"
+                    }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    style={{
+                      transformStyle: "preserve-3d"
+                    }}
+                  >
                   <motion.div 
                     className="absolute -top-24 -right-24 w-48 h-48 bg-blue-500/20 rounded-full blur-3xl"
                     animate={{
