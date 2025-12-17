@@ -24,24 +24,24 @@ export default function HomePage() {
   const bgX = useSpring(mouseX, { damping: 50, stiffness: 100 })
   const bgY = useSpring(mouseY, { damping: 50, stiffness: 100 })
   
-  useEffect(() => {
-    const moveCursor = (e) => {
-      cursorX.set(e.clientX)
-      cursorY.set(e.clientY)
-      setCursorPos({ x: e.clientX, y: e.clientY })
-      
-      if (heroRef.current) {
-        const rect = heroRef.current.getBoundingClientRect()
-        const x = (e.clientX - rect.left - rect.width / 2) / rect.width
-        const y = (e.clientY - rect.top - rect.height / 2) / rect.height
-        mouseX.set(x * 50)
-        mouseY.set(y * 50)
-        setMousePos({ x: x * 30, y: y * 30 })
+    useEffect(() => {
+      const moveCursor = (e) => {
+        cursorX.set(e.clientX)
+        cursorY.set(e.clientY)
+        setCursorPos({ x: e.clientX, y: e.clientY })
+        
+        if (heroRef.current) {
+          const rect = heroRef.current.getBoundingClientRect()
+          const x = (e.clientX - rect.left - rect.width / 2) / rect.width
+          const y = (e.clientY - rect.top - rect.height / 2) / rect.height
+          mouseX.set(x * 50)
+          mouseY.set(y * 50)
+          setMousePos({ x: x * 30, y: y * 30 })
+        }
       }
-    }
-    window.addEventListener("mousemove", moveCursor)
-    return () => window.removeEventListener("mousemove", moveCursor)
-  }, [])
+      window.addEventListener("mousemove", moveCursor)
+      return () => window.removeEventListener("mousemove", moveCursor)
+    }, [cursorX, cursorY, mouseX, mouseY])
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
