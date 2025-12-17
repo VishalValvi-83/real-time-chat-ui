@@ -424,16 +424,20 @@ export default function HomePage() {
                   </motion.div>
               </motion.div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1 }}
-                  className="mt-16 relative"
-                  style={{
-                    transformStyle: "preserve-3d",
-                    perspective: "2000px"
-                  }}
-                >
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 1 }}
+                    className="mt-16 relative"
+                    style={{
+                      transformStyle: "preserve-3d",
+                      perspective: "2000px",
+                      x: useTransform(bgX, [-50, 50], [15, -15]),
+                      y: useTransform(bgY, [-50, 50], [15, -15]),
+                      rotateX: useTransform(bgY, [-50, 50], [5, -5]),
+                      rotateY: useTransform(bgX, [-50, 50], [-8, 8])
+                    }}
+                  >
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-50 to-transparent dark:from-slate-950 h-32 bottom-0 z-10" />
                   
                   <motion.div 
