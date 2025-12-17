@@ -161,30 +161,74 @@ export default function HomePage() {
       </nav>
 
             <motion.section
-              style={{ opacity, scale }}
+              ref={heroRef}
+              style={{ 
+                opacity, 
+                scale,
+                rotateX: useTransform(bgY, [-50, 50], [2, -2]),
+                rotateY: useTransform(bgX, [-50, 50], [-3, 3])
+              }}
               className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
             >
               <motion.div 
                 className="absolute inset-0 pointer-events-none"
-                animate={{
-                  backgroundPosition: ['0% 0%', '100% 100%'],
-                }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "linear"
-                }}
                 style={{
-                  backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)',
-                  backgroundSize: '200% 200%'
+                  x: bgX,
+                  y: bgY,
+                  scale: useTransform(bgX, [-50, 50], [1, 1.05]),
                 }}
-              />
+              >
+                <motion.div
+                  animate={{
+                    backgroundPosition: ['0% 0%', '100% 100%'],
+                  }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "linear"
+                  }}
+                  className="w-full h-full"
+                  style={{
+                    backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)',
+                    backgroundSize: '200% 200%'
+                  }}
+                />
+              </motion.div>
               
               <motion.div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                  background: `radial-gradient(600px circle at ${cursorPos.x}px ${cursorPos.y}px, rgba(59, 130, 246, 0.15), transparent 40%)`
+                  x: useTransform(bgX, [-50, 50], [-25, 25]),
+                  y: useTransform(bgY, [-50, 50], [-25, 25]),
+                  background: `radial-gradient(600px circle at ${cursorPos.x}px ${cursorPos.y}px, rgba(59, 130, 246, 0.2), transparent 40%)`
+                }}
+              />
+              
+              <motion.div
+                className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px]"
+                style={{
+                  x: useTransform(bgX, [-50, 50], [-80, 80]),
+                  y: useTransform(bgY, [-50, 50], [-80, 80]),
+                  scale: useTransform(bgX, [-50, 50], [0.8, 1.2])
+                }}
+              />
+              
+              <motion.div
+                className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-[100px]"
+                style={{
+                  x: useTransform(bgX, [-50, 50], [80, -80]),
+                  y: useTransform(bgY, [-50, 50], [80, -80]),
+                  scale: useTransform(bgY, [-50, 50], [1.2, 0.8])
+                }}
+              />
+              
+              <motion.div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[120px]"
+                style={{
+                  x: useTransform(bgX, [-50, 50], [40, -40]),
+                  y: useTransform(bgY, [-50, 50], [40, -40]),
+                  rotate: useTransform(bgX, [-50, 50], [-30, 30])
                 }}
               />
 
