@@ -49,23 +49,26 @@ const PreLoader = ({ onComplete }) => {
           })
         })
 
-      tl.to(nameLetters, {
-        x: 0,
-        y: 0,
-        rotation: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 1.2,
-        ease: "power3.out",
-        stagger: 0.04
-      })
-      .to(titleLetters, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        stagger: 0.03
-      }, "-=0.4")
+        tl.to(nameLetters, {
+          x: 0,
+          y: 0,
+          rotation: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 1.2,
+          ease: "power3.out",
+          stagger: 0.04
+        })
+        .to(titleLetters, {
+          x: 0,
+          y: 0,
+          rotation: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          ease: "power3.out",
+          stagger: 0.025
+        }, "-=0.3")
       .to(containerRef.current, {
         opacity: 0,
         duration: 0.8,
