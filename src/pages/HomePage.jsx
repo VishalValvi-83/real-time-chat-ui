@@ -524,15 +524,25 @@ export default function HomePage() {
                     transition={{ duration: 0.8 }}
                     className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-20`}
                   >
-                    <motion.div 
-                      className="flex-1 relative group"
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
                       <motion.div 
-                        style={{ y: imageY, rotate: imageRotate }}
-                        className="relative"
+                        className="flex-1 relative group cursor-pointer"
+                        whileHover={{ scale: 1.04 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                        style={{
+                          transformStyle: "preserve-3d",
+                          perspective: "1500px"
+                        }}
                       >
+                        <motion.div 
+                          style={{ y: imageY, rotate: imageRotate }}
+                          className="relative"
+                          whileHover={{
+                            rotateY: isEven ? 8 : -8,
+                            rotateX: 5,
+                            z: 60
+                          }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
                         <div className={`absolute inset-0 bg-gradient-to-br ${
                           index === 0 ? 'from-blue-500/20 to-cyan-500/20' :
                           index === 1 ? 'from-violet-500/20 to-purple-500/20' :
