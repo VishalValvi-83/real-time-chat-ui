@@ -203,8 +203,16 @@ export default function HomePage() {
           </div>
         </motion.section>
 
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section ref={featureRef} className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <motion.div 
+          style={{ y: featureY, opacity: featureOpacity }}
+          className="absolute inset-0 pointer-events-none"
+        >
+          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl" />
+        </motion.div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -219,22 +227,41 @@ export default function HomePage() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-card border border-border/50 rounded-2xl p-6 hover:shadow-lg transition-shadow"
-              >
-                <div className="h-12 w-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-blue-500" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </motion.div>
-            ))}
+            {features.map((feature, index) => {
+              const yOffset = useTransform(
+                featureScrollProgress,
+                [0, 1],
+                [50 + index * 20, -50 - index * 20]
+              )
+              
+              return (
+                <motion.div
+                  key={feature.title}
+                  style={{ y: yOffset }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -10,
+                    boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
+                    transition: { type: "spring", stiffness: 400 }
+                  }}
+                  className="bg-card border border-border/50 rounded-2xl p-6 cursor-pointer"
+                >
+                  <motion.div 
+                    className="h-12 w-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4"
+                    whileHover={{ rotate: 360, scale: 1.2 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <feature.icon className="h-6 w-6 text-blue-500" />
+                  </motion.div>
+                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-muted-foreground">{feature.description}</p>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
