@@ -7,78 +7,79 @@ const PreLoader = ({ onComplete }) => {
   const titleRef = useRef(null)
   const [isComplete, setIsComplete] = useState(false)
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        onComplete: () => {
-          setTimeout(() => {
-            setIsComplete(true)
-            setTimeout(() => onComplete?.(), 500)
-          }, 300)
-        }
-      })
+    useEffect(() => {
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          onComplete: () => {
+            setTimeout(() => {
+              setIsComplete(true)
+              setTimeout(() => onComplete?.(), 500)
+            }, 300)
+          }
+        })
 
-      const nameLetters = nameRef.current.querySelectorAll('.letter')
-      const titleLetters = titleRef.current.querySelectorAll('.letter')
+        const nameLetters = nameRef.current.querySelectorAll('.letter')
+        const titleLetters = titleRef.current.querySelectorAll('.letter')
 
-        nameLetters.forEach((letter, index) => {
-          const randomX = (Math.random() - 0.5) * window.innerWidth * 0.8
-          const randomY = (Math.random() - 0.5) * window.innerHeight * 0.8
-          const randomRotation = (Math.random() - 0.5) * 360
-          
-          gsap.set(letter, {
-            x: randomX,
-            y: randomY,
-            rotation: randomRotation,
-            opacity: 0,
-            scale: 0.3
+          nameLetters.forEach((letter, index) => {
+            const randomX = (Math.random() - 0.5) * window.innerWidth * 0.8
+            const randomY = (Math.random() - 0.5) * window.innerHeight * 0.8
+            const randomRotation = (Math.random() - 0.5) * 360
+            
+            gsap.set(letter, {
+              x: randomX,
+              y: randomY,
+              rotation: randomRotation,
+              opacity: 1,
+              scale: 0.8
+            })
           })
-        })
 
-        titleLetters.forEach((letter, index) => {
-          const randomX = (Math.random() - 0.5) * window.innerWidth * 0.6
-          const randomY = (Math.random() - 0.5) * window.innerHeight * 0.6
-          const randomRotation = (Math.random() - 0.5) * 360
-          
-          gsap.set(letter, {
-            x: randomX,
-            y: randomY,
-            rotation: randomRotation,
-            opacity: 0,
-            scale: 0.3
+          titleLetters.forEach((letter, index) => {
+            const randomX = (Math.random() - 0.5) * window.innerWidth * 0.6
+            const randomY = (Math.random() - 0.5) * window.innerHeight * 0.6
+            const randomRotation = (Math.random() - 0.5) * 360
+            
+            gsap.set(letter, {
+              x: randomX,
+              y: randomY,
+              rotation: randomRotation,
+              opacity: 1,
+              scale: 0.8
+            })
           })
-        })
 
-        tl.to(nameLetters, {
-          x: 0,
-          y: 0,
-          rotation: 0,
-          opacity: 1,
-          scale: 1,
-          duration: 1.2,
-          ease: "power3.out",
-          stagger: 0.04
-        })
-        .to(titleLetters, {
-          x: 0,
-          y: 0,
-          rotation: 0,
-          opacity: 1,
-          scale: 1,
-          duration: 1,
-          ease: "power3.out",
-          stagger: 0.025
-        }, "-=0.3")
-      .to(containerRef.current, {
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.inOut"
-      }, "+=0.6")
+          tl.to({}, { duration: 1.5 })
+          .to(nameLetters, {
+            x: 0,
+            y: 0,
+            rotation: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1.5,
+            ease: "power3.out",
+            stagger: 0.05
+          })
+          .to(titleLetters, {
+            x: 0,
+            y: 0,
+            rotation: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1.2,
+            ease: "power3.out",
+            stagger: 0.03
+          }, "-=0.5")
+        .to(containerRef.current, {
+          opacity: 0,
+          duration: 0.8,
+          ease: "power2.inOut"
+        }, "+=0.8")
 
-    }, containerRef)
+      }, containerRef)
 
-    return () => ctx.revert()
-  }, [onComplete])
+      return () => ctx.revert()
+    }, [onComplete])
 
   const splitText = (text) => {
     return text.split('').map((char, index) => (
