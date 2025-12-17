@@ -390,26 +390,31 @@ export default function HomePage() {
                   />
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 relative z-10">
-                    {[
-                      { value: "2M+", label: "Active Users", color: "blue", delay: 0 },
-                      { value: "500M+", label: "Messages Sent", color: "violet", delay: 0.1 },
-                      { value: "99.9%", label: "Uptime", color: "emerald", delay: 0.2 }
-                    ].map((stat, index) => (
-                      <motion.div
-                        key={stat.label}
-                        className="relative bg-card/80 backdrop-blur-sm rounded-2xl p-6 border border-border/50 shadow-lg overflow-hidden group/stat cursor-pointer"
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 1.2 + stat.delay }}
-                        whileHover={{ 
-                          y: -12, 
-                          scale: 1.05,
-                          boxShadow: stat.color === "blue" ? "0 15px 40px rgba(59, 130, 246, 0.3)" :
-                                     stat.color === "violet" ? "0 15px 40px rgba(139, 92, 246, 0.3)" :
-                                     "0 15px 40px rgba(16, 185, 129, 0.3)"
-                        }}
-                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                      >
+                      {[
+                        { value: "2M+", label: "Active Users", color: "blue", delay: 0 },
+                        { value: "500M+", label: "Messages Sent", color: "violet", delay: 0.1 },
+                        { value: "99.9%", label: "Uptime", color: "emerald", delay: 0.2 }
+                      ].map((stat, index) => (
+                        <motion.div
+                          key={stat.label}
+                          className="relative bg-card/80 backdrop-blur-sm rounded-2xl p-6 border border-border/50 shadow-lg overflow-hidden group/stat cursor-pointer"
+                          initial={{ opacity: 0, y: 30 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 1.2 + stat.delay }}
+                          whileHover={{ 
+                            y: -16, 
+                            scale: 1.08,
+                            rotateX: 10,
+                            rotateY: index === 0 ? -10 : index === 1 ? 0 : 10,
+                            z: 50,
+                            boxShadow: stat.color === "blue" ? "0 20px 50px rgba(59, 130, 246, 0.4)" :
+                                       stat.color === "violet" ? "0 20px 50px rgba(139, 92, 246, 0.4)" :
+                                       "0 20px 50px rgba(16, 185, 129, 0.4)"
+                          }}
+                          style={{
+                            transformStyle: "preserve-3d"
+                          }}
+                        >
                         <motion.div 
                           className={`absolute inset-0 bg-gradient-to-br opacity-0 group-hover/stat:opacity-10 transition-opacity duration-500 ${
                             stat.color === "blue" ? "from-blue-500 to-cyan-500" :
