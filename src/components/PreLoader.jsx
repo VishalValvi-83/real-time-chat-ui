@@ -78,22 +78,18 @@ const PreLoader = ({ onComplete }) => {
       <div className="relative text-center px-8">
         <div 
           ref={nameRef}
-          className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent"
-          style={{ lineHeight: 1.2 }}
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 text-slate-100"
+          style={{ lineHeight: 1.3, letterSpacing: '0.02em' }}
         >
-          {splitText('VISHAL VALVI')}
+          {splitText('Vishal Valvi')}
         </div>
         
         <div 
           ref={titleRef}
-          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.2em] text-slate-300"
+          className="text-lg sm:text-xl md:text-2xl font-light tracking-wider text-slate-400"
         >
-          {splitText('CREATIVE SOFTWARE DEVELOPER')}
+          {splitText('Creative Software Developer')}
         </div>
-
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/10 to-transparent animate-pulse pointer-events-none" />
-        
-        <div className="absolute -inset-20 bg-gradient-to-r from-purple-600/20 via-pink-600/20 to-blue-600/20 blur-3xl opacity-50 pointer-events-none animate-pulse" />
       </div>
     </div>
   )
