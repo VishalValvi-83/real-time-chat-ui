@@ -259,55 +259,80 @@ export default function HomePage() {
                   you connected with friends, family, and colleagues.
                 </motion.p>
 
-                <motion.div 
-                  className="flex items-center justify-center gap-4 pt-4"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.8 }}
-                >
-                  <Link to="/register">
-                    <motion.div
-                      whileHover={{ 
-                        scale: 1.05, 
-                        y: -4,
-                        boxShadow: "0 10px 40px rgba(59, 130, 246, 0.4)"
-                      }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    >
-                      <Button size="lg" className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-lg relative overflow-hidden group">
-                        <motion.span
-                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                          initial={{ x: '-100%' }}
-                          whileHover={{ x: '100%' }}
-                          transition={{ duration: 0.6, ease: "easeInOut" }}
+                  <motion.div 
+                    className="flex items-center justify-center gap-4 pt-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                  >
+                    <Link to="/register">
+                      <motion.div
+                        className="relative group cursor-pointer"
+                        whileHover={{ 
+                          scale: 1.05, 
+                          y: -8,
+                          rotateX: 10,
+                          rotateY: -5
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        style={{
+                          transformStyle: "preserve-3d",
+                          perspective: "1000px"
+                        }}
+                      >
+                        <motion.div
+                          className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-violet-600 rounded-lg blur-lg opacity-50 group-hover:opacity-100"
+                          animate={{
+                            scale: [1, 1.1, 1],
+                            opacity: [0.5, 0.8, 0.5]
+                          }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
                         />
-                        <span className="relative z-10">Start Chatting</span>
-                      </Button>
-                    </motion.div>
-                  </Link>
-                  <Link to="/chats">
-                    <motion.div
-                      whileHover={{ 
-                        scale: 1.05, 
-                        y: -4,
-                        borderColor: "rgba(59, 130, 246, 0.5)"
-                      }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    >
-                      <Button size="lg" variant="outline" className="relative overflow-hidden group">
-                        <motion.span
-                          className="absolute inset-0 bg-blue-500/10"
-                          initial={{ scale: 0, opacity: 0 }}
-                          whileHover={{ scale: 1, opacity: 1 }}
-                          transition={{ duration: 0.3 }}
-                        />
-                        <span className="relative z-10">View Demo</span>
-                      </Button>
-                    </motion.div>
-                  </Link>
-                </motion.div>
+                        <Button size="lg" className="relative bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-2xl overflow-hidden">
+                          <motion.span
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                            initial={{ x: '-100%' }}
+                            whileHover={{ x: '100%' }}
+                            transition={{ duration: 0.6, ease: "easeInOut" }}
+                          />
+                          <span className="relative z-10">Start Chatting</span>
+                        </Button>
+                      </motion.div>
+                    </Link>
+                    <Link to="/chats">
+                      <motion.div
+                        className="relative group cursor-pointer"
+                        whileHover={{ 
+                          scale: 1.05, 
+                          y: -8,
+                          rotateX: -10,
+                          rotateY: 5,
+                          borderColor: "rgba(59, 130, 246, 0.8)"
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        style={{
+                          transformStyle: "preserve-3d",
+                          perspective: "1000px"
+                        }}
+                      >
+                        <Button size="lg" variant="outline" className="relative overflow-hidden border-2 backdrop-blur-sm">
+                          <motion.span
+                            className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-violet-500/20 to-transparent"
+                            initial={{ x: '-100%', opacity: 0 }}
+                            whileHover={{ x: '100%', opacity: 1 }}
+                            transition={{ duration: 0.5 }}
+                          />
+                          <span className="relative z-10">View Demo</span>
+                        </Button>
+                      </motion.div>
+                    </Link>
+                  </motion.div>
               </motion.div>
 
               <motion.div
