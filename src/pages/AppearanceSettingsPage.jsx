@@ -43,22 +43,24 @@ export default function AppearanceSettingsPage() {
     { value: "system", icon: Monitor, label: "System", description: "Follow system setting" },
   ]
 
-  const applyAccentColor = (color) => {
-    const colorMap = {
-      blue: { light: "221.2 83.2% 53.3%", dark: "217.2 91.2% 59.8%" },
-      green: { light: "142.1 76.2% 36.3%", dark: "142.1 70.6% 45.3%" },
-      purple: { light: "262.1 83.3% 57.8%", dark: "263.4 70% 50.4%" },
-      pink: { light: "330.4 81.2% 60.4%", dark: "330.4 85% 60%" },
-      orange: { light: "24.6 95% 53.1%", dark: "20.5 90.2% 48.2%" },
-      red: { light: "0 72.2% 50.6%", dark: "0 72.2% 60.6%" },
+    const applyAccentColor = (color) => {
+      const colorMap = {
+        blue: { light: "221.2 83.2% 53.3%", dark: "217.2 91.2% 59.8%" },
+        green: { light: "142.1 76.2% 36.3%", dark: "142.1 70.6% 45.3%" },
+        purple: { light: "262.1 83.3% 57.8%", dark: "263.4 70% 50.4%" },
+        pink: { light: "330.4 81.2% 60.4%", dark: "330.4 85% 60%" },
+        orange: { light: "24.6 95% 53.1%", dark: "20.5 90.2% 48.2%" },
+        red: { light: "0 72.2% 50.6%", dark: "0 72.2% 60.6%" },
+      }
+      
+      const colors = colorMap[color]
+      if (colors) {
+        const isDark = document.documentElement.classList.contains("dark")
+        const colorValue = isDark ? colors.dark : colors.light
+        document.documentElement.style.setProperty("--primary", colorValue)
+        document.documentElement.style.setProperty("--ring", colorValue)
+      }
     }
-    
-    const colors = colorMap[color]
-    if (colors) {
-      document.documentElement.style.setProperty("--primary", colors.light)
-      document.documentElement.style.setProperty("--ring", colors.light)
-    }
-  }
 
   const handleAccentColorChange = (color) => {
     setAccentColor(color)
