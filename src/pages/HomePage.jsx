@@ -1,5 +1,5 @@
-import { useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { useRef, useState, useEffect } from "react"
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion"
 import { MessageCircle, Shield, Zap, Users, Lock, Check } from "lucide-react"
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
@@ -7,6 +7,24 @@ import { Button } from "@/components/ui/button"
 export default function HomePage() {
   const containerRef = useRef(null)
   const featureRef = useRef(null)
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
+  
+  const cursorX = useMotionValue(0)
+  const cursorY = useMotionValue(0)
+  
+  const springConfig = { damping: 25, stiffness: 150 }
+  const cursorXSpring = useSpring(cursorX, springConfig)
+  const cursorYSpring = useSpring(cursorY, springConfig)
+  
+  useEffect(() => {
+    const moveCursor = (e) => {
+      cursorX.set(e.clientX)
+      cursorY.set(e.clientY)
+      setCursorPos({ x: e.clientX, y: e.clientY })
+    }
+    window.addEventListener("mousemove", moveCursor)
+    return () => window.removeEventListener("mousemove", moveCursor)
+  }, [])
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
