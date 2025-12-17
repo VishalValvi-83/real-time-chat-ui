@@ -554,8 +554,8 @@ export default function HomePage() {
                   </div>
                 </motion.div>
               </motion.div>
-            </div>
-          </motion.section>
+              </motion.div>
+            </motion.section>
 
         <section ref={featureRef} className="relative py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
