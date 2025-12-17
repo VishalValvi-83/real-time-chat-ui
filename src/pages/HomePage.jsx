@@ -847,9 +847,6 @@ export default function HomePage() {
       </div>
     )
   }
-import { Button } from "@/components/ui/button"
-
-export default function HomePage() {
   const containerRef = useRef(null)
   const featureRef = useRef(null)
   const heroRef = useRef(null)
