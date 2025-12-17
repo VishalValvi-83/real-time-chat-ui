@@ -21,9 +21,18 @@ const PreLoader = ({ onComplete }) => {
       const nameLetters = nameRef.current.querySelectorAll('.letter')
       const titleLetters = titleRef.current.querySelectorAll('.letter')
 
-      gsap.set(nameLetters, {
-        opacity: 0,
-        y: 30,
+      nameLetters.forEach((letter, index) => {
+        const randomX = (Math.random() - 0.5) * window.innerWidth * 0.8
+        const randomY = (Math.random() - 0.5) * window.innerHeight * 0.8
+        const randomRotation = (Math.random() - 0.5) * 360
+        
+        gsap.set(letter, {
+          x: randomX,
+          y: randomY,
+          rotation: randomRotation,
+          opacity: 0,
+          scale: 0.3
+        })
       })
 
       gsap.set(titleLetters, {
@@ -32,11 +41,14 @@ const PreLoader = ({ onComplete }) => {
       })
 
       tl.to(nameLetters, {
-        opacity: 1,
+        x: 0,
         y: 0,
-        duration: 0.8,
+        rotation: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 1.2,
         ease: "power3.out",
-        stagger: 0.05
+        stagger: 0.04
       })
       .to(titleLetters, {
         opacity: 1,
@@ -44,7 +56,7 @@ const PreLoader = ({ onComplete }) => {
         duration: 0.6,
         ease: "power2.out",
         stagger: 0.03
-      }, "-=0.2")
+      }, "-=0.4")
       .to(containerRef.current, {
         opacity: 0,
         duration: 0.8,
