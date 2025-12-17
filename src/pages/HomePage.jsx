@@ -143,26 +143,33 @@ export default function HomePage() {
         </div>
       </nav>
 
-          <motion.section
-            style={{ opacity, scale }}
-            className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
-          >
-            <motion.div 
-              className="absolute inset-0 pointer-events-none"
-              animate={{
-                backgroundPosition: ['0% 0%', '100% 100%'],
-              }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "linear"
-              }}
-              style={{
-                backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)',
-                backgroundSize: '200% 200%'
-              }}
-            />
+            <motion.section
+              style={{ opacity, scale }}
+              className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+            >
+              <motion.div 
+                className="absolute inset-0 pointer-events-none"
+                animate={{
+                  backgroundPosition: ['0% 0%', '100% 100%'],
+                }}
+                transition={{
+                  duration: 20,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "linear"
+                }}
+                style={{
+                  backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)',
+                  backgroundSize: '200% 200%'
+                }}
+              />
+              
+              <motion.div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: `radial-gradient(600px circle at ${cursorPos.x}px ${cursorPos.y}px, rgba(59, 130, 246, 0.15), transparent 40%)`
+                }}
+              />
 
             <div className="max-w-7xl mx-auto text-center relative z-10">
               <motion.div
