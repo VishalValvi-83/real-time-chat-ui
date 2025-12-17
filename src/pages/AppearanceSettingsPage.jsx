@@ -19,23 +19,25 @@ export default function AppearanceSettingsPage() {
     applyAccentColor(savedAccent)
   }, [])
 
-  const handleThemeChange = (newTheme) => {
-    setTheme(newTheme)
-    localStorage.setItem("theme", newTheme)
-    
-    if (newTheme === "dark") {
-      document.documentElement.classList.add("dark")
-    } else if (newTheme === "light") {
-      document.documentElement.classList.remove("dark")
-    } else {
-      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches
-      if (isDark) {
+    const handleThemeChange = (newTheme) => {
+      setTheme(newTheme)
+      localStorage.setItem("theme", newTheme)
+      
+      if (newTheme === "dark") {
         document.documentElement.classList.add("dark")
-      } else {
+      } else if (newTheme === "light") {
         document.documentElement.classList.remove("dark")
+      } else {
+        const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+        if (isDark) {
+          document.documentElement.classList.add("dark")
+        } else {
+          document.documentElement.classList.remove("dark")
+        }
       }
+      
+      applyAccentColor(accentColor)
     }
-  }
 
   const themeOptions = [
     { value: "light", icon: Sun, label: "Light", description: "Light theme" },
