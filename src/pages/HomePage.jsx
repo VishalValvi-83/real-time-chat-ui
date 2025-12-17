@@ -315,22 +315,32 @@ export default function HomePage() {
                   </motion.h1>
                 </motion.div>
 
-                    <motion.p 
-                      className="text-xl text-muted-foreground max-w-2xl mx-auto"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.6 }}
-                    >
+                  <motion.p 
+                    className="text-xl text-muted-foreground max-w-2xl mx-auto"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                    style={{
+                      x: useTransform(bgX, [-50, 50], [-3, 3]),
+                      y: useTransform(bgY, [-50, 50], [-3, 3]),
+                      z: 20
+                    }}
+                  >
                     The modern chat application that respects your privacy while keeping
                     you connected with friends, family, and colleagues.
                   </motion.p>
 
-                    <motion.div 
-                      className="flex items-center justify-center gap-4 pt-4"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.8 }}
-                    >
+                  <motion.div 
+                    className="flex items-center justify-center gap-4 pt-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                    style={{
+                      x: useTransform(bgX, [-50, 50], [-2, 2]),
+                      y: useTransform(bgY, [-50, 50], [-2, 2]),
+                      z: 25
+                    }}
+                  >
                     <Link to="/register">
                       <motion.div
                         className="relative group cursor-pointer"
