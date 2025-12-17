@@ -105,69 +105,103 @@ export default function HomePage() {
         </div>
       </nav>
 
-      <motion.section
-        style={{ opacity, scale }}
-        className="pt-32 pb-20 px-4 sm:px-6 lg:px-8"
-      >
-        <div className="max-w-7xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-6"
-          >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
-              Connect with{" "}
-              <span className="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">
-                everyone
-              </span>
-              <br />
-              securely and instantly
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              The modern chat application that respects your privacy while keeping
-              you connected with friends, family, and colleagues.
-            </p>
-            <div className="flex items-center justify-center gap-4 pt-4">
-              <Link to="/register">
-                <Button size="lg" className="bg-blue-500 hover:bg-blue-600 text-white">
-                  Start Chatting
-                </Button>
-              </Link>
-              <Link to="/chats">
-                <Button size="lg" variant="outline">
-                  View Demo
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-16 relative"
-          >
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-50 to-transparent dark:from-slate-950 h-32 bottom-0 z-10" />
-            <div className="bg-gradient-to-br from-blue-500/10 to-violet-500/10 rounded-2xl p-8 border border-border/50 backdrop-blur-sm">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-card rounded-xl p-6 border border-border/50 shadow-sm">
-                  <div className="text-4xl font-bold text-blue-500">2M+</div>
-                  <div className="text-muted-foreground mt-2">Active Users</div>
-                </div>
-                <div className="bg-card rounded-xl p-6 border border-border/50 shadow-sm">
-                  <div className="text-4xl font-bold text-violet-500">500M+</div>
-                  <div className="text-muted-foreground mt-2">Messages Sent</div>
-                </div>
-                <div className="bg-card rounded-xl p-6 border border-border/50 shadow-sm">
-                  <div className="text-4xl font-bold text-emerald-500">99.9%</div>
-                  <div className="text-muted-foreground mt-2">Uptime</div>
-                </div>
+        <motion.section
+          style={{ opacity, scale }}
+          className="pt-32 pb-20 px-4 sm:px-6 lg:px-8"
+        >
+          <div className="max-w-7xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-6"
+            >
+              <motion.h1 
+                className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                Connect with{" "}
+                <motion.span 
+                  className="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent inline-block"
+                  whileHover={{ scale: 1.1, rotate: [-1, 1, -1, 0] }}
+                  transition={{ duration: 0.3 }}
+                >
+                  everyone
+                </motion.span>
+                <br />
+                securely and instantly
+              </motion.h1>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                The modern chat application that respects your privacy while keeping
+                you connected with friends, family, and colleagues.
+              </p>
+              <div className="flex items-center justify-center gap-4 pt-4">
+                <Link to="/register">
+                  <motion.div
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button size="lg" className="bg-blue-500 hover:bg-blue-600 text-white">
+                      Start Chatting
+                    </Button>
+                  </motion.div>
+                </Link>
+                <Link to="/chats">
+                  <motion.div
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button size="lg" variant="outline">
+                      View Demo
+                    </Button>
+                  </motion.div>
+                </Link>
               </div>
-            </div>
-          </motion.div>
-        </div>
-      </motion.section>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="mt-16 relative"
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-50 to-transparent dark:from-slate-950 h-32 bottom-0 z-10" />
+              <motion.div 
+                className="bg-gradient-to-br from-blue-500/10 to-violet-500/10 rounded-2xl p-8 border border-border/50 backdrop-blur-sm"
+                whileHover={{ scale: 1.02, boxShadow: "0 20px 60px rgba(59, 130, 246, 0.15)" }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <motion.div 
+                    className="bg-card rounded-xl p-6 border border-border/50 shadow-sm"
+                    whileHover={{ y: -8, boxShadow: "0 10px 30px rgba(59, 130, 246, 0.2)" }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    <div className="text-4xl font-bold text-blue-500">2M+</div>
+                    <div className="text-muted-foreground mt-2">Active Users</div>
+                  </motion.div>
+                  <motion.div 
+                    className="bg-card rounded-xl p-6 border border-border/50 shadow-sm"
+                    whileHover={{ y: -8, boxShadow: "0 10px 30px rgba(139, 92, 246, 0.2)" }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    <div className="text-4xl font-bold text-violet-500">500M+</div>
+                    <div className="text-muted-foreground mt-2">Messages Sent</div>
+                  </motion.div>
+                  <motion.div 
+                    className="bg-card rounded-xl p-6 border border-border/50 shadow-sm"
+                    whileHover={{ y: -8, boxShadow: "0 10px 30px rgba(16, 185, 129, 0.2)" }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    <div className="text-4xl font-bold text-emerald-500">99.9%</div>
+                    <div className="text-muted-foreground mt-2">Uptime</div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </motion.section>
 
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
