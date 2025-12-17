@@ -7,24 +7,41 @@ import { Button } from "@/components/ui/button"
 export default function HomePage() {
   const containerRef = useRef(null)
   const featureRef = useRef(null)
+  const heroRef = useRef(null)
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   
   const cursorX = useMotionValue(0)
   const cursorY = useMotionValue(0)
+  
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
   
   const springConfig = { damping: 25, stiffness: 150 }
   const cursorXSpring = useSpring(cursorX, springConfig)
   const cursorYSpring = useSpring(cursorY, springConfig)
   
-  useEffect(() => {
-    const moveCursor = (e) => {
-      cursorX.set(e.clientX)
-      cursorY.set(e.clientY)
-      setCursorPos({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener("mousemove", moveCursor)
-    return () => window.removeEventListener("mousemove", moveCursor)
-  }, [])
+  const bgX = useSpring(mouseX, { damping: 50, stiffness: 100 })
+  const bgY = useSpring(mouseY, { damping: 50, stiffness: 100 })
+  
+    useEffect(() => {
+      const moveCursor = (e) => {
+        cursorX.set(e.clientX)
+        cursorY.set(e.clientY)
+        setCursorPos({ x: e.clientX, y: e.clientY })
+        
+        if (heroRef.current) {
+          const rect = heroRef.current.getBoundingClientRect()
+          const x = (e.clientX - rect.left - rect.width / 2) / rect.width
+          const y = (e.clientY - rect.top - rect.height / 2) / rect.height
+          mouseX.set(x * 50)
+          mouseY.set(y * 50)
+          setMousePos({ x: x * 30, y: y * 30 })
+        }
+      }
+      window.addEventListener("mousemove", moveCursor)
+      return () => window.removeEventListener("mousemove", moveCursor)
+    }, [cursorX, cursorY, mouseX, mouseY])
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -144,39 +161,94 @@ export default function HomePage() {
       </nav>
 
             <motion.section
-              style={{ opacity, scale }}
+              ref={heroRef}
+              style={{ 
+                opacity, 
+                scale,
+                rotateX: useTransform(bgY, [-50, 50], [2, -2]),
+                rotateY: useTransform(bgX, [-50, 50], [-3, 3])
+              }}
               className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
             >
               <motion.div 
                 className="absolute inset-0 pointer-events-none"
-                animate={{
-                  backgroundPosition: ['0% 0%', '100% 100%'],
-                }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "linear"
-                }}
                 style={{
-                  backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)',
-                  backgroundSize: '200% 200%'
+                  x: bgX,
+                  y: bgY,
+                  scale: useTransform(bgX, [-50, 50], [1, 1.05]),
                 }}
-              />
+              >
+                <motion.div
+                  animate={{
+                    backgroundPosition: ['0% 0%', '100% 100%'],
+                  }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "linear"
+                  }}
+                  className="w-full h-full"
+                  style={{
+                    backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)',
+                    backgroundSize: '200% 200%'
+                  }}
+                />
+              </motion.div>
               
               <motion.div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                  background: `radial-gradient(600px circle at ${cursorPos.x}px ${cursorPos.y}px, rgba(59, 130, 246, 0.15), transparent 40%)`
+                  x: useTransform(bgX, [-50, 50], [-25, 25]),
+                  y: useTransform(bgY, [-50, 50], [-25, 25]),
+                  background: `radial-gradient(600px circle at ${cursorPos.x}px ${cursorPos.y}px, rgba(59, 130, 246, 0.2), transparent 40%)`
+                }}
+              />
+              
+              <motion.div
+                className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px]"
+                style={{
+                  x: useTransform(bgX, [-50, 50], [-80, 80]),
+                  y: useTransform(bgY, [-50, 50], [-80, 80]),
+                  scale: useTransform(bgX, [-50, 50], [0.8, 1.2])
+                }}
+              />
+              
+              <motion.div
+                className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-[100px]"
+                style={{
+                  x: useTransform(bgX, [-50, 50], [80, -80]),
+                  y: useTransform(bgY, [-50, 50], [80, -80]),
+                  scale: useTransform(bgY, [-50, 50], [1.2, 0.8])
+                }}
+              />
+              
+              <motion.div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[120px]"
+                style={{
+                  x: useTransform(bgX, [-50, 50], [40, -40]),
+                  y: useTransform(bgY, [-50, 50], [40, -40]),
+                  rotate: useTransform(bgX, [-50, 50], [-30, 30])
                 }}
               />
 
-            <div className="max-w-7xl mx-auto text-center relative z-10">
+            <motion.div 
+              className="max-w-7xl mx-auto text-center relative z-10"
+              style={{
+                x: useTransform(bgX, [-50, 50], [-10, 10]),
+                y: useTransform(bgY, [-50, 50], [-10, 10]),
+                rotateX: useTransform(bgY, [-50, 50], [3, -3]),
+                rotateY: useTransform(bgX, [-50, 50], [-5, 5])
+              }}
+            >
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="space-y-6"
+                style={{
+                  transformStyle: "preserve-3d"
+                }}
               >
                 <motion.div className="inline-block">
                   <motion.h1 
@@ -184,6 +256,10 @@ export default function HomePage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
+                    style={{
+                      x: useTransform(bgX, [-50, 50], [-5, 5]),
+                      y: useTransform(bgY, [-50, 50], [-5, 5])
+                    }}
                   >
                     Connect with{" "}
                       <motion.span 
@@ -204,7 +280,10 @@ export default function HomePage() {
                         }}
                         style={{
                           transformStyle: "preserve-3d",
-                          perspective: "1000px"
+                          perspective: "1000px",
+                          x: useTransform(bgX, [-50, 50], [-8, 8]),
+                          y: useTransform(bgY, [-50, 50], [-8, 8]),
+                          z: 30
                         }}
                       >
                       <motion.span
@@ -249,21 +328,31 @@ export default function HomePage() {
                   </motion.h1>
                 </motion.div>
 
-                <motion.p 
-                  className="text-xl text-muted-foreground max-w-2xl mx-auto"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                >
-                  The modern chat application that respects your privacy while keeping
-                  you connected with friends, family, and colleagues.
-                </motion.p>
+                  <motion.p 
+                    className="text-xl text-muted-foreground max-w-2xl mx-auto"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                    style={{
+                      x: useTransform(bgX, [-50, 50], [-3, 3]),
+                      y: useTransform(bgY, [-50, 50], [-3, 3]),
+                      z: 20
+                    }}
+                  >
+                    The modern chat application that respects your privacy while keeping
+                    you connected with friends, family, and colleagues.
+                  </motion.p>
 
                   <motion.div 
                     className="flex items-center justify-center gap-4 pt-4"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.8 }}
+                    style={{
+                      x: useTransform(bgX, [-50, 50], [-2, 2]),
+                      y: useTransform(bgY, [-50, 50], [-2, 2]),
+                      z: 25
+                    }}
                   >
                     <Link to="/register">
                       <motion.div
@@ -335,16 +424,20 @@ export default function HomePage() {
                   </motion.div>
               </motion.div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1 }}
-                  className="mt-16 relative"
-                  style={{
-                    transformStyle: "preserve-3d",
-                    perspective: "2000px"
-                  }}
-                >
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 1 }}
+                    className="mt-16 relative"
+                    style={{
+                      transformStyle: "preserve-3d",
+                      perspective: "2000px",
+                      x: useTransform(bgX, [-50, 50], [15, -15]),
+                      y: useTransform(bgY, [-50, 50], [15, -15]),
+                      rotateX: useTransform(bgY, [-50, 50], [5, -5]),
+                      rotateY: useTransform(bgX, [-50, 50], [-8, 8])
+                    }}
+                  >
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-50 to-transparent dark:from-slate-950 h-32 bottom-0 z-10" />
                   
                   <motion.div 
@@ -461,8 +554,8 @@ export default function HomePage() {
                   </div>
                 </motion.div>
               </motion.div>
-            </div>
-          </motion.section>
+              </motion.div>
+            </motion.section>
 
         <section ref={featureRef} className="relative py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
