@@ -7,20 +7,37 @@ import { Button } from "@/components/ui/button"
 export default function HomePage() {
   const containerRef = useRef(null)
   const featureRef = useRef(null)
+  const heroRef = useRef(null)
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   
   const cursorX = useMotionValue(0)
   const cursorY = useMotionValue(0)
   
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  
   const springConfig = { damping: 25, stiffness: 150 }
   const cursorXSpring = useSpring(cursorX, springConfig)
   const cursorYSpring = useSpring(cursorY, springConfig)
+  
+  const bgX = useSpring(mouseX, { damping: 50, stiffness: 100 })
+  const bgY = useSpring(mouseY, { damping: 50, stiffness: 100 })
   
   useEffect(() => {
     const moveCursor = (e) => {
       cursorX.set(e.clientX)
       cursorY.set(e.clientY)
       setCursorPos({ x: e.clientX, y: e.clientY })
+      
+      if (heroRef.current) {
+        const rect = heroRef.current.getBoundingClientRect()
+        const x = (e.clientX - rect.left - rect.width / 2) / rect.width
+        const y = (e.clientY - rect.top - rect.height / 2) / rect.height
+        mouseX.set(x * 50)
+        mouseY.set(y * 50)
+        setMousePos({ x: x * 30, y: y * 30 })
+      }
     }
     window.addEventListener("mousemove", moveCursor)
     return () => window.removeEventListener("mousemove", moveCursor)
