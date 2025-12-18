@@ -1119,7 +1119,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="relative border-t py-12 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: bgColor, borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
+      {/* <footer className="relative border-t py-12 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: bgColor, borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div>
@@ -1158,7 +1158,7 @@ export default function HomePage() {
             © 2024 VoxenApp. All rights reserved.
           </div>
         </div>
-      </footer>
+      </footer> */}
 
       <Footer />
     </div>
