@@ -3,8 +3,10 @@ import { motion, useScroll, useTransform, useMotionValue, useSpring } from "fram
 import { MessageCircle, Shield, Zap, Users, Lock, Check } from "lucide-react"
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
+import { usePreloader } from "@/App"
 
 export default function HomePage() {
+  const { preloaderComplete } = usePreloader()
   const containerRef = useRef(null)
   const featureRef = useRef(null)
   const heroRef = useRef(null)
@@ -237,7 +239,7 @@ export default function HomePage() {
               >
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  animate={preloaderComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                   transition={{ duration: 0.8 }}
                   className="space-y-6"
                   style={{
@@ -248,7 +250,7 @@ export default function HomePage() {
                     <motion.h1 
                       className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight"
                       initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      animate={preloaderComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                       transition={{ duration: 0.8, delay: 0.2 }}
                     >
                     Connect with{" "}
@@ -305,20 +307,20 @@ export default function HomePage() {
                       />
                     </motion.span>
                     <br />
-                    <motion.span
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.8, delay: 0.4 }}
-                    >
-                      securely and instantly
-                    </motion.span>
+                  <motion.span
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={preloaderComplete ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                  >
+                    securely and instantly
+                  </motion.span>
                   </motion.h1>
                 </motion.div>
 
                   <motion.p 
                     className="text-xl text-muted-foreground max-w-2xl mx-auto"
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    animate={preloaderComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
                     style={{
                       x: useTransform(bgX, [-50, 50], [-3, 3]),
@@ -333,7 +335,7 @@ export default function HomePage() {
                   <motion.div 
                     className="flex items-center justify-center gap-4 pt-4"
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    animate={preloaderComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.8, delay: 0.8 }}
                     style={{
                       x: useTransform(bgX, [-50, 50], [-2, 2]),
@@ -413,7 +415,7 @@ export default function HomePage() {
 
                   <motion.div
                     initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    animate={preloaderComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                     transition={{ duration: 0.8, delay: 1 }}
                     className="mt-16 relative"
                     style={{
