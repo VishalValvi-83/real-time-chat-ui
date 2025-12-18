@@ -8,6 +8,7 @@ import ChatConversationPage from './pages/ChatConversationPage'
 import SettingsPage from './pages/SettingsPage'
 import ProfilePage from './pages/ProfilePage'
 import AccountSettingsPage from './pages/AccountSettingsPage'
+import DemoPage from './pages/DemoPage'
 import NotificationsSettingsPage from './pages/NotificationsSettingsPage'
 import PrivacySettingsPage from './pages/PrivacySettingsPage'
 import AppearanceSettingsPage from './pages/AppearanceSettingsPage'
@@ -66,8 +67,9 @@ function App() {
       {showPreLoader && <PreLoader onComplete={handlePreloaderComplete} />}
       <Router>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
+<Route path="/" element={<HomePage />} />
+            <Route path="/demo" element={<DemoPage />} />
+            <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/chats" element={<ChatsListPage />} />
           <Route path="/chats/:id" element={<ChatConversationPage />} />
