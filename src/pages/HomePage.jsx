@@ -118,6 +118,44 @@ export default function HomePage() {
     }
   ]
 
+  const testimonials = [
+    {
+      name: "Sarah Chen",
+      role: "Product Designer",
+      avatar: "SC",
+      content: "ChatApp has completely transformed how our remote team communicates. The video quality is incredible and the interface is so intuitive.",
+      rating: 5
+    },
+    {
+      name: "Marcus Johnson",
+      role: "Startup Founder",
+      avatar: "MJ",
+      content: "We switched from three different apps to just ChatApp. Voice messages and instant translations have been game-changers for our global team.",
+      rating: 5
+    },
+    {
+      name: "Emily Rodriguez",
+      role: "Marketing Director",
+      avatar: "ER",
+      content: "The security features give me peace of mind when discussing sensitive campaigns. Plus, the group video calls never lag, even with 30+ people.",
+      rating: 5
+    },
+    {
+      name: "David Kim",
+      role: "Software Engineer",
+      avatar: "DK",
+      content: "Finally, a chat app that respects privacy. End-to-end encryption, no data selling, and it's blazing fast. What more could you want?",
+      rating: 5
+    }
+  ]
+
+  const liveConversation = [
+    { sender: "Alex", message: "Hey team! Just pushed the new feature", time: "2:34 PM", avatar: "A" },
+    { sender: "Sarah", message: "Amazing work! Let me test it out", time: "2:35 PM", avatar: "S" },
+    { sender: "Mike", message: "The video call quality is incredible now", time: "2:36 PM", avatar: "M" },
+    { sender: "Alex", message: "Thanks! We optimized the compression", time: "2:37 PM", avatar: "A" },
+  ]
+
   const plans = [
     {
       name: "Free",
