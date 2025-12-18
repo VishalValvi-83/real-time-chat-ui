@@ -415,7 +415,7 @@ export default function HomePage() {
 
                   <motion.div
                     initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    animate={preloaderComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                     transition={{ duration: 0.8, delay: 1 }}
                     className="mt-16 relative"
                     style={{
