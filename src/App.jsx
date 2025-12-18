@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, createContext, useContext } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
@@ -14,8 +14,12 @@ import AppearanceSettingsPage from './pages/AppearanceSettingsPage'
 import PreLoader from './components/PreLoader'
 import './index.css'
 
+export const PreloaderContext = createContext({ preloaderComplete: false })
+export const usePreloader = () => useContext(PreloaderContext)
+
 function App() {
   const [showPreLoader, setShowPreLoader] = useState(true)
+  const [preloaderComplete, setPreloaderComplete] = useState(false)
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "light"
