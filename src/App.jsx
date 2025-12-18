@@ -56,9 +56,14 @@ function App() {
     }
   }, [])
 
+  const handlePreloaderComplete = () => {
+    setShowPreLoader(false)
+    setPreloaderComplete(true)
+  }
+
   return (
-    <>
-      {showPreLoader && <PreLoader onComplete={() => setShowPreLoader(false)} />}
+    <PreloaderContext.Provider value={{ preloaderComplete }}>
+      {showPreLoader && <PreLoader onComplete={handlePreloaderComplete} />}
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -74,7 +79,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </Router>
-    </>
+    </PreloaderContext.Provider>
   )
 }
 
