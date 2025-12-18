@@ -44,11 +44,11 @@ export function ChatListItem({
         <p className="text-sm text-muted-foreground truncate">{lastMessage}</p>
       </div>
 
-        {unreadCount > 0 && (
-          <Badge className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full h-5 min-w-[20px] px-1.5">
-            {unreadCount > 99 ? "99+" : unreadCount}
-          </Badge>
-        )}
+      {unreadCount > 0 && (
+        <Badge className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full h-5 min-w-[20px] px-1.5">
+          {unreadCount > 99 ? "99+" : unreadCount}
+        </Badge>
+      )}
     </motion.div>
   )
 }
