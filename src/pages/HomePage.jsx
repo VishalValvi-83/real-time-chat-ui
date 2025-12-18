@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react"
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion"
-import { MessageCircle, Shield, Zap, Users, Lock, Check, Video, Phone, Mic, Globe, Send, Sparkles, ArrowRight, Play } from "lucide-react"
+import { MessageCircle, Shield, Zap, Users, Lock, Check, Video, Phone, Mic, Globe, Send, Sparkles, ArrowRight, Play, Star, Quote, Heart, Image, Paperclip, Smile } from "lucide-react"
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { usePreloader } from "@/App"
