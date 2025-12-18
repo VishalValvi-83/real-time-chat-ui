@@ -306,15 +306,17 @@ export default function HomePage() {
                   </Button>
                 </motion.div>
               </Link>
-              <motion.div
-                className="flex items-center gap-3 px-6 py-3 rounded-xl bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 transition-colors"
-                whileHover={{ scale: 1.02 }}
-              >
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                  <Play className="w-4 h-4 text-white ml-0.5" />
-                </div>
-                <span className="text-white/80">Watch Demo</span>
-              </motion.div>
+<Link to="/demo">
+                  <motion.div
+                    className="flex items-center gap-3 px-6 py-3 rounded-xl bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 transition-colors"
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                      <Play className="w-4 h-4 text-white ml-0.5" />
+                    </div>
+                    <span className="text-white/80">Watch Demo</span>
+                  </motion.div>
+                </Link>
             </motion.div>
 
             <motion.div
