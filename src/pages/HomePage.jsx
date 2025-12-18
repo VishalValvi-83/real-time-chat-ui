@@ -239,7 +239,7 @@ export default function HomePage() {
               >
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  animate={preloaderComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                   transition={{ duration: 0.8 }}
                   className="space-y-6"
                   style={{
@@ -250,7 +250,7 @@ export default function HomePage() {
                     <motion.h1 
                       className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight"
                       initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      animate={preloaderComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                       transition={{ duration: 0.8, delay: 0.2 }}
                     >
                     Connect with{" "}
