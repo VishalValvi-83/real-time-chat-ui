@@ -307,13 +307,13 @@ export default function HomePage() {
                       />
                     </motion.span>
                     <br />
-                    <motion.span
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.8, delay: 0.4 }}
-                    >
-                      securely and instantly
-                    </motion.span>
+                  <motion.span
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={preloaderComplete ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                  >
+                    securely and instantly
+                  </motion.span>
                   </motion.h1>
                 </motion.div>
 
