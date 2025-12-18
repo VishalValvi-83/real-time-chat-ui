@@ -4,12 +4,37 @@ import { gsap } from 'gsap'
 const PreLoader = ({ onComplete }) => {
   const containerRef = useRef(null)
   const [percentage, setPercentage] = useState(0)
+  const [isDark, setIsDark] = useState(true)
+  const [accentColor, setAccentColor] = useState('#60a5fa')
 
   const circleTexts = [
     "REAL-TIME CHAT • VIDEO CALLING • VOICE MESSAGES • ",
     "GROUP CHATS • END-TO-END ENCRYPTED • SECURE • ",
     "INSTANT MESSAGING • GLOBAL REACH • HD QUALITY • "
   ]
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "dark"
+    const savedAccent = localStorage.getItem("accentColor") || "blue"
+    
+    let dark = false
+    if (savedTheme === "dark") {
+      dark = true
+    } else if (savedTheme === "system") {
+      dark = window.matchMedia("(prefers-color-scheme: dark)").matches
+    }
+    setIsDark(dark)
+
+    const hexMap = {
+      blue: { light: "#3b82f6", dark: "#60a5fa" },
+      green: { light: "#22c55e", dark: "#4ade80" },
+      purple: { light: "#a855f7", dark: "#c084fc" },
+      pink: { light: "#ec4899", dark: "#f472b6" },
+      orange: { light: "#f97316", dark: "#fb923c" },
+      red: { light: "#ef4444", dark: "#f87171" },
+    }
+    setAccentColor(hexMap[savedAccent]?.[dark ? 'dark' : 'light'] || hexMap.blue[dark ? 'dark' : 'light'])
+  }, [])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -26,7 +51,6 @@ const PreLoader = ({ onComplete }) => {
         scale: 0.8
       })
 
-      // Entrance animation
       gsap.to(circles, {
         scale: 1,
         opacity: 1,
@@ -43,7 +67,6 @@ const PreLoader = ({ onComplete }) => {
         ease: "power2.out"
       })
 
-      // Continuous rotation animations (separate from main timeline)
       gsap.to(circles[0], {
         rotation: 360,
         duration: 20,
@@ -65,7 +88,6 @@ const PreLoader = ({ onComplete }) => {
         ease: "none"
       })
 
-      // Percentage counter - this controls when loading "completes"
       gsap.to({ val: 0 }, {
         val: 100,
         duration: 3,
@@ -75,7 +97,6 @@ const PreLoader = ({ onComplete }) => {
           setPercentage(newVal)
         },
         onComplete: () => {
-          // Fade out animation
           gsap.to(containerRef.current, {
             opacity: 0,
             duration: 0.6,
@@ -92,9 +113,16 @@ const PreLoader = ({ onComplete }) => {
     return () => ctx.revert()
   }, [onComplete])
 
+  const bgColor = isDark ? '#030712' : '#ffffff'
+  const textColor = isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)'
+  const textColorMedium = isDark ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)'
+  const textColorLight = isDark ? 'rgba(255, 255, 255, 0.35)' : 'rgba(0, 0, 0, 0.35)'
+  const percentageColor = isDark ? '#ffffff' : '#0f172a'
+
   const createCircularText = (text, radius, index) => {
     const chars = text.split('')
     const angleStep = 360 / chars.length
+    const colors = [textColor, textColorMedium, textColorLight]
 
     return chars.map((char, i) => {
       const angle = i * angleStep - 90
@@ -110,9 +138,7 @@ const PreLoader = ({ onComplete }) => {
             left: '50%',
             top: '50%',
             transform: `translate(-50%, -50%) translate(${x}px, ${y}px) rotate(${angle + 90}deg)`,
-            color: index === 0 ? 'rgba(255, 255, 255, 0.7)' : 
-                   index === 1 ? 'rgba(255, 255, 255, 0.5)' : 
-                   'rgba(255, 255, 255, 0.35)',
+            color: colors[index],
             fontSize: index === 0 ? '11px' : index === 1 ? '10px' : '9px',
             fontFamily: "'Space Grotesk', sans-serif",
             fontWeight: 500,
@@ -128,10 +154,10 @@ const PreLoader = ({ onComplete }) => {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0a0a0a] overflow-hidden"
+      className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden"
+      style={{ backgroundColor: bgColor }}
     >
       <div className="relative w-[420px] h-[420px] sm:w-[520px] sm:h-[520px]">
-        {/* Outer circle */}
         <div 
           className="orbit-circle absolute inset-0"
           style={{ transformOrigin: 'center center' }}
@@ -141,7 +167,6 @@ const PreLoader = ({ onComplete }) => {
           </div>
         </div>
 
-        {/* Middle circle */}
         <div 
           className="orbit-circle absolute inset-0"
           style={{ transformOrigin: 'center center' }}
@@ -151,7 +176,6 @@ const PreLoader = ({ onComplete }) => {
           </div>
         </div>
 
-        {/* Inner circle */}
         <div 
           className="orbit-circle absolute inset-0"
           style={{ transformOrigin: 'center center' }}
@@ -161,15 +185,25 @@ const PreLoader = ({ onComplete }) => {
           </div>
         </div>
 
-        {/* Center percentage */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div 
-            className="percentage-text text-7xl sm:text-8xl font-light text-white tracking-tight"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            className="percentage-text text-7xl sm:text-8xl font-light tracking-tight"
+            style={{ 
+              fontFamily: "'Space Grotesk', sans-serif",
+              color: percentageColor
+            }}
           >
             {percentage}
           </div>
         </div>
+
+        <div 
+          className="absolute inset-0 rounded-full opacity-20 blur-3xl"
+          style={{ 
+            background: `radial-gradient(circle, ${accentColor} 0%, transparent 70%)`,
+            transform: 'scale(0.8)'
+          }}
+        />
       </div>
     </div>
   )
