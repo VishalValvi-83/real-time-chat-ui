@@ -3,8 +3,10 @@ import { motion, useScroll, useTransform, useMotionValue, useSpring } from "fram
 import { MessageCircle, Shield, Zap, Users, Lock, Check } from "lucide-react"
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
+import { usePreloader } from "@/App"
 
 export default function HomePage() {
+  const { preloaderComplete } = usePreloader()
   const containerRef = useRef(null)
   const featureRef = useRef(null)
   const heroRef = useRef(null)
