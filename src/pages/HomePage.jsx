@@ -656,21 +656,318 @@ export default function HomePage() {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
+</div>
+        </section>
 
-      <section id="pricing" className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-[#030712]" />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-              Simple,{" "}
+        <section className="relative py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-[#030712]" />
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6"
+              >
+                <MessageCircle className="w-4 h-4 text-blue-400" />
+                <span className="text-sm text-white/70">Live Preview</span>
+              </motion.div>
+              
+              <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                Experience{" "}
+                <span className="bg-gradient-to-r from-blue-400 via-violet-400 to-pink-400 bg-clip-text text-transparent">
+                  Real Conversations
+                </span>
+              </h2>
+              <p className="text-xl text-white/50 max-w-2xl mx-auto">
+                See how seamlessly teams communicate with ChatApp
+              </p>
+            </motion.div>
+
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-3xl blur-3xl" />
+                
+                <div className="relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden">
+                  <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-violet-500 flex items-center justify-center">
+                        <Users className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <div className="text-white font-medium">Team Alpha</div>
+                        <div className="text-white/40 text-xs flex items-center gap-1">
+                          <span className="w-2 h-2 bg-green-400 rounded-full"></span>
+                          4 members online
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center"
+                      >
+                        <Phone className="w-4 h-4 text-white/60" />
+                      </motion.button>
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center"
+                      >
+                        <Video className="w-4 h-4 text-white/60" />
+                      </motion.button>
+                    </div>
+                  </div>
+
+                  <div className="p-6 space-y-4 min-h-[320px]">
+                    {liveConversation.map((msg, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.15 }}
+                        className={`flex items-start gap-3 ${msg.sender === "Alex" ? "" : ""}`}
+                      >
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white ${
+                          msg.avatar === "A" ? "bg-blue-500" : 
+                          msg.avatar === "S" ? "bg-pink-500" : "bg-emerald-500"
+                        }`}>
+                          {msg.avatar}
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-white text-sm font-medium">{msg.sender}</span>
+                            <span className="text-white/30 text-xs">{msg.time}</span>
+                          </div>
+                          <div className="bg-white/5 rounded-2xl rounded-tl-sm px-4 py-2 text-white/80 text-sm inline-block">
+                            {msg.message}
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                    
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.8 }}
+                      className="flex items-center gap-2 text-white/40 text-xs"
+                    >
+                      <div className="flex gap-1">
+                        <motion.div
+                          className="w-1.5 h-1.5 bg-white/40 rounded-full"
+                          animate={{ y: [0, -3, 0] }}
+                          transition={{ duration: 0.5, repeat: Infinity, delay: 0 }}
+                        />
+                        <motion.div
+                          className="w-1.5 h-1.5 bg-white/40 rounded-full"
+                          animate={{ y: [0, -3, 0] }}
+                          transition={{ duration: 0.5, repeat: Infinity, delay: 0.15 }}
+                        />
+                        <motion.div
+                          className="w-1.5 h-1.5 bg-white/40 rounded-full"
+                          animate={{ y: [0, -3, 0] }}
+                          transition={{ duration: 0.5, repeat: Infinity, delay: 0.3 }}
+                        />
+                      </div>
+                      Sarah is typing...
+                    </motion.div>
+                  </div>
+
+                  <div className="px-6 py-4 border-t border-white/10 flex items-center gap-3">
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center"
+                    >
+                      <Paperclip className="w-4 h-4 text-white/60" />
+                    </motion.button>
+                    <div className="flex-1 bg-white/5 rounded-full px-4 py-2 text-white/40 text-sm">
+                      Type a message...
+                    </div>
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center"
+                    >
+                      <Smile className="w-4 h-4 text-white/60" />
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 flex items-center justify-center"
+                    >
+                      <Send className="w-4 h-4 text-white" />
+                    </motion.button>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="space-y-8"
+              >
+                {[
+                  { icon: Zap, title: "Instant Delivery", description: "Messages arrive in milliseconds, not seconds. Real-time sync across all your devices." },
+                  { icon: Shield, title: "Encrypted by Default", description: "Every message is end-to-end encrypted. Even we can't read your conversations." },
+                  { icon: Users, title: "Rich Presence", description: "See who's online, typing, or in a call. Stay connected with your team's activity." }
+                ].map((feature, index) => (
+                  <motion.div
+                    key={feature.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="flex items-start gap-4"
+                  >
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/20 to-violet-500/20 flex items-center justify-center flex-shrink-0">
+                      <feature.icon className="w-6 h-6 text-blue-400" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-white mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                        {feature.title}
+                      </h4>
+                      <p className="text-white/50 text-sm leading-relaxed">{feature.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+
+                <Link to="/demo">
+                  <motion.div
+                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors group cursor-pointer"
+                    whileHover={{ x: 5 }}
+                  >
+                    Try the interactive demo
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </motion.div>
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#0a1628] to-[#030712]" />
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6"
+              >
+                <Heart className="w-4 h-4 text-pink-400" />
+                <span className="text-sm text-white/70">Loved by millions</span>
+              </motion.div>
+              
+              <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                What Our{" "}
+                <span className="bg-gradient-to-r from-pink-400 via-violet-400 to-blue-400 bg-clip-text text-transparent">
+                  Users Say
+                </span>
+              </h2>
+              <p className="text-xl text-white/50 max-w-2xl mx-auto">
+                Join millions of satisfied users worldwide
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {testimonials.map((testimonial, index) => (
+                <motion.div
+                  key={testimonial.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="relative group"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-violet-500/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <div className="relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10 h-full">
+                    <Quote className="w-8 h-8 text-blue-500/30 mb-4" />
+                    
+                    <p className="text-white/70 leading-relaxed mb-6">
+                      "{testimonial.content}"
+                    </p>
+
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-violet-500 flex items-center justify-center font-bold text-white">
+                        {testimonial.avatar}
+                      </div>
+                      <div>
+                        <div className="text-white font-medium">{testimonial.name}</div>
+                        <div className="text-white/40 text-sm">{testimonial.role}</div>
+                      </div>
+                      <div className="ml-auto flex gap-1">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mt-16 flex flex-wrap items-center justify-center gap-8"
+            >
+              {[
+                { value: "4.9", label: "App Store Rating" },
+                { value: "4.8", label: "Play Store Rating" },
+                { value: "50M+", label: "Downloads" },
+                { value: "190", label: "Countries" }
+              ].map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + index * 0.1 }}
+                  className="text-center px-8"
+                >
+                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
+                    {stat.value}
+                  </div>
+                  <div className="text-white/40 text-sm mt-1">{stat.label}</div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        <section id="pricing" className="relative py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-[#030712]" />
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                Simple,{" "}
               <span className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
                 transparent
               </span>
