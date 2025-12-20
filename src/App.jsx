@@ -4,18 +4,18 @@ import { ThemeProvider } from './hooks/useTheme'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
-import ChatsListPage from './pages/ChatsListPage'
-import ChatConversationPage from './pages/ChatConversationPage'
-import SettingsPage from './pages/SettingsPage'
-import ProfilePage from './pages/ProfilePage'
-import AccountSettingsPage from './pages/AccountSettingsPage'
+import ChatsListPage from './pages/Chat/ChatsListPage'
+import ChatConversationPage from './pages/Chat/ChatConversationPage'
+import SettingsPage from './pages/Chat/ChatSettings/SettingsPage'
+import ProfilePage from './pages/Chat/Profile/ProfilePage'
+import AccountSettingsPage from './pages/Chat/ChatSettings/AccountSettingsPage'
 import DemoPage from './pages/DemoPage'
-import NotificationsSettingsPage from './pages/NotificationsSettingsPage'
-import PrivacySettingsPage from './pages/PrivacySettingsPage'
-import AppearanceSettingsPage from './pages/AppearanceSettingsPage'
+import NotificationsSettingsPage from './pages/Chat/ChatSettings/NotificationsSettingsPage'
+import PrivacySettingsPage from './pages/Chat/ChatSettings/PrivacySettingsPage'
+import AppearanceSettingsPage from './pages/Chat/ChatSettings/AppearanceSettingsPage'
 import PreLoader from './components/PreLoader'
 import './index.css'
-
+import { ToastContainer } from 'react-toastify';
 export const PreloaderContext = createContext({ preloaderComplete: false })
 export const usePreloader = () => useContext(PreloaderContext)
 
@@ -31,6 +31,18 @@ function App() {
   return (
     <ThemeProvider>
       <PreloaderContext.Provider value={{ preloaderComplete }}>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         {showPreLoader && <PreLoader onComplete={handlePreloaderComplete} />}
         <Router>
           <Routes>
